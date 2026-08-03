@@ -32,3 +32,16 @@ node_modules
 # VitePress
 **/.vitepress/dist
 **/.vitepress/cache
+
+
+# Docker
+logs/
+assets/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary
+*.swp
+*.swo

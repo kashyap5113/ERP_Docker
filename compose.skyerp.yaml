@@ -1,0 +1,47 @@
+services:
+
+  backend:
+    image: skyerp:v16
+
+  frontend:
+
+    image: skyerp:v16
+    environment:
+      FRAPPE_SITE_NAME_HEADER: skyerp.local
+    ports:
+      - "8080:8080"
+  websocket:
+    image: skyerp:v16
+
+  scheduler:
+    image: skyerp:v16
+
+  queue-short:
+    image: skyerp:v16
+
+  queue-long:
+    image: skyerp:v16
+
+  configurator:
+    image: skyerp:v16
+
+  init:
+    image: skyerp:v16
+
+    command:
+      - /bin/bash
+      - /init/init.sh
+
+    volumes:
+      - sites:/home/frappe/frappe-bench/sites
+      - ./init:/init
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+      redis-cache:
+        condition: service_started
+
+      redis-queue:
+        condition: service_started
