@@ -1,33 +1,55 @@
 services:
 
   backend:
+    build:
+      context: .
     image: skyerp:v16
-
+    pull_policy: never
   frontend:
-
+    build:
+      context: .
     image: skyerp:v16
+    pull_policy: never
     environment:
       FRAPPE_SITE_NAME_HEADER: skyerp.local
     ports:
       - "8080:8080"
+
   websocket:
+    build:
+      context: .
     image: skyerp:v16
+    pull_policy: never
 
   scheduler:
+    build:
+      context: .
     image: skyerp:v16
+    pull_policy: never
 
   queue-short:
+    build:
+      context: .
     image: skyerp:v16
+    pull_policy: never
 
   queue-long:
+    build:
+      context: .
     image: skyerp:v16
+    pull_policy: never
 
   configurator:
+    build:
+      context: .
     image: skyerp:v16
+    pull_policy: never
 
   init:
+    build:
+      context: .
     image: skyerp:v16
-
+    pull_policy: never
     command:
       - /bin/bash
       - /init/init.sh
